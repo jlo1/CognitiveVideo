@@ -2,13 +2,13 @@
 % 03/25/14
 % Ranika Kejriwal (rkejriwa), Jessica Lo (jlo1), Preeti Singh (preetisi)
 
-ROW_RES = 1680;
-COL_RES = 1050;
+RESIZE_FACTOR = 10;
+COL_RES = 1680;
+ROW_RES = 1050;
 GAZECOL_X = 11;
 GAZECOL_Y = 12;
-VID_SIZE_HGT = 840;
-VID_SIZE_WID = 525;
-
+VID_SIZE_WID = COL_RES/RESIZE_FACTOR;
+VID_SIZE_HGT = ROW_RES/RESIZE_FACTOR;
 
 dataroot = 'Assignment4-data/';
 resultroot = 'hw4results/';
@@ -16,18 +16,22 @@ csvfilenames = ['data1-airport.csv'; 'data2-webpage.csv'; 'data3-mona.csv   '; '
 csvfiles = cellstr(csvfilenames);
 imgfilenames = ['img1.png'; 'img2.png'; 'img3.png'; 'img4.png'];
 imgfiles = cellstr(imgfilenames);
-
-vidObj = VideoWriter(strcat(resultroot, 'animated_gaze_points.avi'));
-vidObj.FrameRate = 10;
-vidObj.Quality = 25;
+resultfilename = strcat(resultroot, 'partC_animated_gaze_resize_', num2str(RESIZE_FACTOR), '.avi');
+vidObj = VideoWriter(resultfilename);
+vidObj.FrameRate = 5;
+vidObj.Quality = 100;
 open(vidObj);
 
+ptx = 0;
+pty = 0;
 
 for fileInd= 1 : size(csvfiles)
     alldata = importdata(strcat(dataroot, csvfiles{fileInd}));
     data = alldata.textdata;
     dims = size(data);
     img = imread(strcat(dataroot, imgfiles{fileInd}));
+    img = imresize(img, [VID_SIZE_HGT VID_SIZE_WID]);
+    
     imshow(img);
     hold on;
     x = zeros(dims(1));
@@ -43,12 +47,13 @@ for fileInd= 1 : size(csvfiles)
         
         time = str2double(data(rowInd, 1));
         time_diff = 0;
-        if (prior_time ~= 0 ) 
+        if (prior_time ~= 0) 
             time_diff = time - prior_time;
             framedata = getframe;
             frame = imresize(framedata.cdata, [VID_SIZE_HGT VID_SIZE_WID]);
+            writeVideo(vidObj, frame);
             
-            for timeInd = 1:30:time_diff
+            for timeInd = 2:30:time_diff
                 writeVideo(vidObj, frame);
             end
         end
@@ -59,8 +64,8 @@ for fileInd= 1 : size(csvfiles)
         %Keep useful saccadic gaze points
         cell_ptx = data(rowInd, GAZECOL_X);
         cell_pty = data(rowInd, GAZECOL_Y);
-        ptx = str2double(cell_ptx{1});
-        pty = str2double(cell_pty{1});
+        ptx = str2double(cell_ptx{1})/RESIZE_FACTOR;
+        pty = str2double(cell_pty{1})/RESIZE_FACTOR;
         
         counter = counter + 1;
         x(counter) = ptx;
