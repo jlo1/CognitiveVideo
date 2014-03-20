@@ -6,6 +6,9 @@ ROW_RES = 1680;
 COL_RES = 1050;
 GAZECOL_X = 11;
 GAZECOL_Y = 12;
+VID_SIZE_HGT = 840;
+VID_SIZE_WID = 525;
+
 
 dataroot = 'Assignment4-data/';
 resultroot = 'hw4results/';
@@ -42,10 +45,11 @@ for fileInd= 1 : size(csvfiles)
         time_diff = 0;
         if (prior_time ~= 0 ) 
             time_diff = time - prior_time;
-            frame = getframe;
+            framedata = getframe;
+            frame = imresize(framedata.cdata, [VID_SIZE_HGT VID_SIZE_WID]);
             
             for timeInd = 1:30:time_diff
-                writeVideo(vidObj, frame.cdata);
+                writeVideo(vidObj, frame);
             end
         end
         prior_time = time;
