@@ -19,16 +19,17 @@ for fileInd= 1 : size(csvfiles)
     data = alldata.textdata;
     dims = size(data);
     img = imread(strcat(dataroot, imgfiles{fileInd}));
-    imshow(img);
-    hold on;
-    x = zeros(dims(1));
-    y = zeros(dims(1));
+    
+    img_dim = size(img);
+    heatmap_data = zeros(img_dim(1), img_dim(2));
     counter = 0;
+    prior_time = 0;
     for rowInd = 2 : dims(1) 
         %Filter out useless data
         if (strcmp(data(rowInd, 2), 'false') || strcmp(data(rowInd, 3), 'false'))
             continue;
         end
+        counter = counter + 1;
         
         %Keep useful saccadic gaze points
         cell_ptx = data(rowInd, GAZECOL_X);
@@ -36,19 +37,38 @@ for fileInd= 1 : size(csvfiles)
         ptx = str2double(cell_ptx{1});
         pty = str2double(cell_pty{1});
         
-        counter = counter + 1;
-        x(counter) = ptx;
-        y(counter) = pty;
-        plot(ptx, pty, 'ro');
-        hold on;
+        
+        time = str2double(data(rowInd, 1));
+        time_diff = 0;
+        if (prior_time ~= 0) 
+            time_diff = time - prior_time;
+            for boxIndR=-25:25
+                if pty + boxIndR <= 0
+                    boxIndR = 0;
+                end
+                if boxIndR + pty > img_dim(2)
+                    break;
+                end
+                for boxIndC=-25:25
+                    if ptx + boxIndC <= 0
+                        boxIndC = 0;
+                    end
+                    if boxIndC + ptx > img_dim(1)
+                        break;
+                    end
+                    heatmap_data(pty + boxIndR, ptx + boxIndC) = heatmap_data(pty+boxIndR, ptx+boxIndC) + time_diff;
+                end
+                
+            end
+        end
+        prior_time = time;
         
     end
     
-    %Plot useful points
-    x = x(1:counter);
-    y = y(1:counter);
-    plot(x, y);
+    colormap('jet');
+    imagesc(heatmap_data);
+    colorbar;
     
     frame = getframe;
-    imwrite(frame.cdata, strcat(resultroot, 'partA_img', num2str(fileInd), '.png'));
+    imwrite(frame.cdata, strcat(resultroot, 'partB_img', num2str(fileInd), '.png'));
 end

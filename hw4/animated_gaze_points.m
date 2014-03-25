@@ -2,7 +2,7 @@
 % 03/25/14
 % Ranika Kejriwal (rkejriwa), Jessica Lo (jlo1), Preeti Singh (preetisi)
 
-RESIZE_FACTOR = 10;
+RESIZE_FACTOR = 1;
 COL_RES = 1680;
 ROW_RES = 1050;
 GAZECOL_X = 11;
@@ -16,16 +16,18 @@ csvfilenames = ['data1-airport.csv'; 'data2-webpage.csv'; 'data3-mona.csv   '; '
 csvfiles = cellstr(csvfilenames);
 imgfilenames = ['img1.png'; 'img2.png'; 'img3.png'; 'img4.png'];
 imgfiles = cellstr(imgfilenames);
-resultfilename = strcat(resultroot, 'partC_animated_gaze_resize_', num2str(RESIZE_FACTOR), '.avi');
-vidObj = VideoWriter(resultfilename);
-vidObj.FrameRate = 5;
-vidObj.Quality = 100;
-open(vidObj);
 
 ptx = 0;
 pty = 0;
 
 for fileInd= 1 : size(csvfiles)
+    
+    resultfilename = strcat(resultroot, 'partC_animated_gaze_0', num2str(fileInd), '.avi');
+    vidObj = VideoWriter(resultfilename);
+    vidObj.FrameRate = 50;
+    vidObj.Quality = 100;
+    open(vidObj);
+
     alldata = importdata(strcat(dataroot, csvfiles{fileInd}));
     data = alldata.textdata;
     dims = size(data);
@@ -80,6 +82,6 @@ for fileInd= 1 : size(csvfiles)
         end
         
     end
-end
     
-close(vidObj);
+    close(vidObj);
+end
