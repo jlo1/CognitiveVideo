@@ -21,7 +21,7 @@ imgfilenames = ['img1.png'; 'img2.png'; 'img3.png'; 'img4.png'];
 imgfiles = cellstr(imgfilenames);
 resultfilename = strcat(resultroot, 'partD_animated_pupil_resize_', num2str(RESIZE_FACTOR), '.avi');
 vidObj = VideoWriter(resultfilename);
-vidObj.FrameRate = 5;
+vidObj.FrameRate = 50;
 vidObj.Quality = 100;
 open(vidObj);
 
