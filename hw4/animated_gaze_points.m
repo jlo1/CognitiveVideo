@@ -2,7 +2,8 @@
 % 03/25/14
 % Ranika Kejriwal (rkejriwa), Jessica Lo (jlo1), Preeti Singh (preetisi)
 
-RESIZE_FACTOR = 1;
+%For no resizing, set to 1.
+RESIZE_FACTOR = 10;
 COL_RES = 1680;
 ROW_RES = 1050;
 GAZECOL_X = 11;
