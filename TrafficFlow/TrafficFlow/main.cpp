@@ -1,18 +1,29 @@
-//
-//  main.cpp
-//  TrafficFlow
-//
-//  Created by Jessica Lo on 3/27/14.
-//  Copyright (c) 2014 Jessica Lo. All rights reserved.
-//
+// Example showing how to read and write images
+#include <opencv2/opencv.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv/cvaux.h>
 
-#include <iostream>
-
-int main(int argc, const char * argv[])
+int fake_main1(int argc, char** argv)
 {
-
-  // insert code here...
-  std::cout << "Hello, World!\n";
-    return 0;
+  IplImage * pInpImg = 0;
+  
+  // Load an image from file - change this based on your image name
+  pInpImg = cvLoadImage("my_image.jpg", CV_LOAD_IMAGE_UNCHANGED);
+  if(!pInpImg)
+  {
+    fprintf(stderr, "failed to load input image\n");
+    return -1;
+  }
+  
+  // Write the image to a file with a different name,
+  // using a different image format -- .png instead of .jpg
+  if( !cvSaveImage("my_image_copy.png", pInpImg) )
+  {
+    fprintf(stderr, "failed to write image file\n");
+  }
+  
+  // Remember to free image memory after using it!
+  cvReleaseImage(&pInpImg);
+  
+  return 0;
 }
-
