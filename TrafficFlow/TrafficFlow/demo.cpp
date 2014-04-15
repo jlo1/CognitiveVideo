@@ -35,7 +35,7 @@ void drawCars(cv::Mat image, std::vector<traffic21::Vehicle> cars)
     }
 }
 
-int demo_main()
+int main()
 {
   /*fprintf( stderr, "cwd: %s\n", getenv("PWD") );
   std::ofstream outputFile;

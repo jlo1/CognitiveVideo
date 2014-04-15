@@ -48,7 +48,7 @@ struct PixMem* download_url(const char* url)
     curl_easy_cleanup(curl);
     return mem;
 }
-int main(int argc, char* argv[])
+int web_main(int argc, char* argv[])
 {
   //read list of cameras
   curl_global_init(CURL_GLOBAL_ALL);
@@ -78,23 +78,24 @@ int main(int argc, char* argv[])
       out << cameras[i];
       out << ".jpg?v=";
       out << (time(NULL) * 1000);
-      //std::cout << "Downloading: " << cameras[i] << std::endl;
+      std::cout << "Downloading: " << cameras[i] << std::endl;
       struct PixMem* mem = download_url(out.str().data());
-      //std::cout << "Done Downloading: " << cameras[i] << std::endl;
+      std::cout << "Done Downloading: " << cameras[i] << std::endl;
       cv::Mat img = cv::Mat(cv::Size(352,240),CV_8U,mem->mem);
       cv::Mat m = cv::imdecode(img,1);
       if (m.cols == 0 || m.rows == 0)
         continue;
       subs[i](m, fg);
-      //std::cout << cameras[i] << ",";
+      std::cout << cameras[i] << ",";
       cv::Mat contour = fg.clone();
       cv::threshold(contour,contour,5.0,255,CV_THRESH_BINARY);
       std::vector<cv::Rect> rectangles = cd.detectCars(contour);
-      //std::cout << rectangles.size() << std::endl;
+      std::cout << rectangles.size() << std::endl;
       if (mem->mem != NULL)
         free(mem->mem);
       if (mem != NULL)
         free(mem);
+      
     }
     //std::cout << "-" << std::endl;
     cv::waitKey(5);
