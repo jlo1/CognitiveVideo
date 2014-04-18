@@ -48,7 +48,7 @@ struct PixMem* download_url(const char* url)
     curl_easy_cleanup(curl);
     return mem;
 }
-int web_main(int argc, char* argv[])
+int main(int argc, char* argv[])
 {
   //read list of cameras
   curl_global_init(CURL_GLOBAL_ALL);
