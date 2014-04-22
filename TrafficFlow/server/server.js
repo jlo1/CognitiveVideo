@@ -32,21 +32,21 @@ var server = http.createServer(function(req,res) {
     var uri = url.parse(req.url,true);
     if (uri.pathname === '/favicon.ico') {
         res.setHeader("Content-Type", "image/x-icon");        
-        fs.createReadStream(path.join('server', 'static', 'favicon.ico')).pipe(res);
+        fs.createReadStream(path.join('static', 'favicon.ico')).pipe(res);
     } else if (uri.pathname === '/endpoint') {
         res.setHeader("Content-Type", "application/x-javascript");        
         res.end(uri.query.callback + '(' + util.inspect(stats) + ')');
     } else if (uri.pathname.substring(1).indexOf('static') > -1) {
-        path.exists(path.join('server',uri.pathname.substring(1)), function(ex) {
+        path.exists(uri.pathname.substring(1), function(ex) {
             if (ex) {
-                fs.createReadStream(path.join('server',uri.pathname.substring(1))).pipe(res);
+                fs.createReadStream(uri.pathname.substring(1)).pipe(res);
             } else {
                 res.end();
             }
         });
     } else if (uri.pathname == '/') {
         res.setHeader('Content-Type', "text/html");
-        fs.createReadStream(path.join('server','static','index.html')).pipe(res);
+        fs.createReadStream('index.html').pipe(res);
     } else {
         res.end('NOT FOUND');
     }

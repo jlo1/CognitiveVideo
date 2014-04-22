@@ -1,0 +1,33 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#map_canvas {
+  height: 50%;
+  width: 50%;
+  margin-top: 100px;
+  float: left;
+}
+
+#camera_image {
+  margin-top: 100px;
+  float: left;
+  width: 50%;
+  //height: 550px;
+  //width: 700px;
+}
+
+h1 {
+  text-align: center;
+}
+
+#data {
+  clear: both;
+  text-align: center;
+}
