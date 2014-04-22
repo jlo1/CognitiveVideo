@@ -37,7 +37,7 @@ var server = http.createServer(function(req,res) {
         res.setHeader("Content-Type", "application/x-javascript");        
         res.end(uri.query.callback + '(' + util.inspect(stats) + ')');
     } else if (uri.pathname.substring(1).indexOf('static') > -1) {
-        path.exists(uri.pathname.substring(1), function(ex) {
+        fs.exists(uri.pathname.substring(1), function(ex) {
             if (ex) {
                 fs.createReadStream(uri.pathname.substring(1)).pipe(res);
             } else {
