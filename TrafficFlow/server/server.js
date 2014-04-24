@@ -22,7 +22,6 @@ function start() {
         stats[s[0]].lastupdated = new Date().getTime();
     });
     web.on('exit', function(code) {
-        console.log('restarting web');
         start();
     });
     web.stdin.end();

@@ -9,24 +9,59 @@ body {
   padding: 0;
 }
 
+#header_block {
+  z-index: 100;
+  position: absolute;
+  top: 0px;
+  width: 300px;
+  left: 100px;
+  box-sizing: border-box;
+
+}
+
+#input_block {
+  height: 500px;
+  width: 300px;
+  top: 30px;
+  padding: 10px;
+  background-color: #DDD;
+  position: absolute;
+
+  box-sizing: border-box;
+  border: solid 1px #0076a3;
+}
+
 #map_canvas {
   height: 100%;
   width: 100%;
-  margin-top: 30px;
-  float: left;
+  z-index: 1;
+  //top: 300px;
 }
 
-h1 {
+#title {
+  box-sizing: border-box;
   text-align: center;
+  margin: auto auto;
+  top: 0px;
+  position: absolute;
+  font-weight: bold;
+  width: 300px;
+  height: 30px;
+  color: #FFFFFF;
+  border: solid 1px #0076a3;
+  padding: 4px;
+
+  background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#284A6E));
+  background: -moz-linear-gradient(top, #0078a5, #284A6E);
+  
+
 }
 
 #select {
-  width:50%;
-  margin-left: 100px;
 }
 
 #selected {
-  color: #00FFFF;
+  color: #0088FF;
 }
 
 #data {

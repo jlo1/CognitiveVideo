@@ -237,6 +237,7 @@ function stats()
         window.currentstats = data;
         for (var i in data) {
             if (i !== '595') {
+                console.log('i is ' + i);
                 var str = i+'-'+cameras[i].next;
                 var line = polylines[str];
                 var newColor = calcColor(data[i].count);
