@@ -12,18 +12,16 @@
     <div id="header_block">
       <div id="title">Real Time Traffic Speed</div>
       <div id="input_block">
-       	<div id="select"> 
-       		<p id="startSelect"> Please click on marker to select starting point. </p> 
-       		<div id="selected">
-       			<p id ="startSelected">Starting point: X. </p> 
-       		</div>
-       		<p id="endSelect"> Please click on marker to select ending point. </p> 
-       		<div id="selected">
-       			<p id ="endSelected">Ending point: Y. </p> 
-       		</div>
-       		<button type="button" id="calculate">Calculate!</button>
-       		<button type="button" id="clear">Clear</button> 
-       		<p id="tt">Total Time:</p>
+       	<div id="select">
+       		<label id="start_label">Start:</label> 
+       		<input id ="start" type="text" placeholder="Click on a Marker" disabled/> 
+
+          <label id="end_label">End:</label> 
+          <input id ="end" type="text" placeholder="Click on a Marker" disabled/>
+
+       		<button type="button" class="button" id="calculate">Calculate!</button>
+       		<button type="button" class="button" id="clear">Clear</button> 
+       		<p>Total Time: <span id="tt"></span></p>
        	</div>
       </div>
     </div>
