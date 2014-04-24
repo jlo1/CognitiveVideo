@@ -1,5 +1,6 @@
 html {
   height: 100%;
+  font-family: verdana;
 }
 
 body {
@@ -9,25 +10,27 @@ body {
 }
 
 #map_canvas {
-  height: 50%;
-  width: 50%;
-  margin-top: 100px;
+  height: 100%;
+  width: 100%;
+  margin-top: 30px;
   float: left;
-}
-
-#camera_image {
-  margin-top: 100px;
-  float: left;
-  width: 50%;
-  //height: 550px;
-  //width: 700px;
 }
 
 h1 {
   text-align: center;
 }
 
+#select {
+  width:50%;
+  margin-left: 100px;
+}
+
+#selected {
+  color: #00FFFF;
+}
+
 #data {
   clear: both;
   text-align: center;
 }
+
