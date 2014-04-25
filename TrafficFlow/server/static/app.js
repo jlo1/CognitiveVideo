@@ -236,8 +236,7 @@ function stats()
     $.getJSON('/endpoint?callback=?', function(data) {
         window.currentstats = data;
         for (var i in data) {
-            if (i !== '595') {
-                console.log('i is ' + i);
+            if (i !== '595' && i.indexOf('-') < 0) {
                 var str = i+'-'+cameras[i].next;
                 var line = polylines[str];
                 var newColor = calcColor(data[i].count);
@@ -253,6 +252,25 @@ function stats()
         setTimeout(stats,10000);
     });
 }
+
+function handle_events()
+{
+    // If input cleared, change to .input_highlighted; clear text
+    $("#clear").click(function() {
+        $(".textbox").val("");
+        $(".textbox#start").addClass("input_highlighted");
+    });
+
+}
+
+function get_camera_name(id) {
+    var all_cameras = cams['Location Name'].cameras;
+    for( var i = 0; i < all_cameras.length; i++) {
+        if (all_cameras[i].id == id)
+            return all_cameras[i].name;
+    }
+}
+
 window.onload = function() {
     //setup map
     var latlng = new google.maps.LatLng(40.39286439546028,-80.10119845581056);
@@ -272,6 +290,14 @@ window.onload = function() {
         google.maps.event.addListener(cameraMarkers[i], 'click', function(event) {
             //on click, go to this camera right away
             newcamera(this.title);
+
+            $(".input_highlighted").val(get_camera_name(this.title));
+            var this_input = $(".input_highlighted");
+            var next_input = this_input.nextAll(".textbox");
+            if (next_input != null)
+                next_input.addClass("input_highlighted");
+            this_input.removeClass("input_highlighted");
+
         });
     }
     for (var i in lines) {
@@ -299,6 +325,9 @@ window.onload = function() {
             console.log("LON: " + $(this).find("lng").text());
         })
     });
+
+    //setup click handlers
+    handle_events();
     //plot the test route
     plot_route();
     //start pulling in stats

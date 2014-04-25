@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script src="http://maps.googleapis.com/maps/api/js?libraries=geometry&sensor=false"></script>
 <script src="static/cameras2.js"></script>
 <script src="static/app.js"></script>
@@ -14,10 +14,10 @@
       <div id="input_block">
        	<div id="select">
        		<label id="start_label">Start:</label> 
-       		<input id ="start" type="text" placeholder="Click on a Marker" disabled/> 
+       		<input id ="start" type="text" class="textbox input_highlighted" placeholder="Click on a Marker" disabled/> 
 
           <label id="end_label">End:</label> 
-          <input id ="end" type="text" placeholder="Click on a Marker" disabled/>
+          <input id ="end" type="text" class="textbox" placeholder="Click on a Marker" disabled/>
 
        		<button type="button" class="button" id="calculate">Calculate!</button>
        		<button type="button" class="button" id="clear">Clear</button> 

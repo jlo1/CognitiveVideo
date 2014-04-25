@@ -63,6 +63,11 @@ body {
   margin: 10px 0px;
 }
 
+.input_highlighted {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
+}
+
 .button {
   margin: 20px;
   width: 90px;
