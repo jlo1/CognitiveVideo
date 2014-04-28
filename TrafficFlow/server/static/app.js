@@ -115,10 +115,13 @@ window.labels = {};
 window.MPH_TO_METERSMIN = (26.82);
 window.NUM_LANES = 4;
 window.a = setTimeout(undefined, 1000000000000000000000);
+window.start_id = null;
+window.end_id = null;
+
 var currentcamera = 595;
 var url_base = 'http://www.dot35.state.pa.us/public/Districts/District11/WebCams/D11-';
 //plot the current (preprogrammed) route
-function plot_route()
+function plot_preprogrammed_route()
 {
     var route = google.maps.geometry.encoding.decodePath(route_line)
     var start = route[0];
@@ -141,6 +144,19 @@ function plot_route()
         strokeWeight: 3
     });
 }
+
+//plot the route given by start and end
+function plot_route() 
+{
+    if (start_id == null || end_id == null) {
+        console.log("Cannot calculate; empty start and end");
+        return;
+    }
+    start_latlng = new google.maps.LatLng(cameras[start_id].lat, cameras[start_id].lng);
+    end_latlng = new google.maps.LatLng(cameras[end_id].lat, cameras[end_id].lng);
+    getDirections(start_latlng, end_latlng);
+}
+
 //calculate the travel time of the current route
 function travel_time()
 {
@@ -167,10 +183,9 @@ function travel_time()
         }
     }
     return time;
-
 }
 // Use the google directions api to obtain a route between two locations
-function getDirections(start, end, cb)
+function getDirections(start, end)
 {
     if (!window.dir)
         window.dir = new google.maps.DirectionsService();
@@ -179,8 +194,15 @@ function getDirections(start, end, cb)
         origin: start,
         provideRouteAlternatives: false,
         unitSystem: google.maps.UnitSystem.METRIC,
-        travelMode: google.maps.TravelMode.DRIVING 
-    }, cb);
+        travelMode: google.maps.TravelMode.DRIVING, 
+        avoidHighways: false,
+        avoidTolls: false
+    }, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+          directionsDisplay.setDirections(result);
+        }
+    });
+
 }
 //callback invoked when we need to update the camera image and marker
 //if id is given, go directly there. otherwise, move to next
@@ -222,7 +244,7 @@ function time_between(cam1, cam2)
     if (mod1 != 0 || mod2 != 0) throw new Error("Camera not a multiple of 5")
     var time = 0;
     var len = 0;
-    for (var i = cam1; i < cam2; i+=5) {
+    for (var i = parseInt(cam1); i < parseInt(cam2); i+=5) {
         var curr_line = google.maps.geometry.encoding.decodePath(lines[i+ "-" + (i+5)].polyline);
         var line_len = google.maps.geometry.spherical.computeLength(curr_line)
         len += line_len
@@ -248,7 +270,11 @@ function stats()
                 labels[str].changed('text');
             }
         }
-        document.getElementById("tt").innerText = Math.round(travel_time()) + " minutes";
+        //document.getElementById("tt").innerText = Math.round(travel_time()) + " minutes";
+        if (start_id == null || end_id == null) {
+            return;
+        }
+        document.getElementById("tt").innerText = Math.round(time_between(start_id, end_id)) + " minutes";
         setTimeout(stats,10000);
     });
 }
@@ -259,6 +285,30 @@ function handle_events()
     $("#clear").click(function() {
         $(".textbox").val("");
         $(".textbox#start").addClass("input_highlighted");
+        window.start_id = null;
+        window.end_id = null;
+        directionsDisplay.setMap(null); 
+        directionsDisplay = null;
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        directionsDisplay.setMap(map);
+    });
+
+    // Handle expanding and collapsing input details on arrow click
+    $(".arrow").click(function(e) {
+        console.log(e.target);
+        if ($(".arrow").hasClass("minimized")) {
+            $("#input_block").removeClass("hidden");
+            $(".arrow").removeClass("minimized");
+        } else {
+            $("#input_block").addClass("hidden");
+            $(".arrow").addClass("minimized");
+        }
+    })
+
+    // When calculate, rerun plot_route and recalculate travel time
+    $("#calculate").click(function() {
+        plot_route();
+        stats();
     });
 
 }
@@ -280,6 +330,9 @@ window.onload = function() {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     window.map = new google.maps.Map(document.getElementById("map_canvas"),opt);
+    window.directionsDisplay = new google.maps.DirectionsRenderer();
+    directionsDisplay.setMap(map);
+
     //place camera markers & listen for their clicks
     for (var i in cameras) {
         cameraMarkers[i] = new google.maps.Marker({
@@ -287,19 +340,48 @@ window.onload = function() {
             map: map,
             title: i
         });
-        google.maps.event.addListener(cameraMarkers[i], 'click', function(event) {
-            //on click, go to this camera right away
-            newcamera(this.title);
+        cameraMarkers[i].info = new google.maps.InfoWindow({
+            content:    '<img border="0" align="left" src='+
+                        url_base+i+'.jpg?v='+new Date().getTime() + '>'
+        })
 
+
+        google.maps.event.addListener(cameraMarkers[i], 'click', function(event) {
             $(".input_highlighted").val(get_camera_name(this.title));
             var this_input = $(".input_highlighted");
             var next_input = this_input.nextAll(".textbox");
-            if (next_input != null)
+            if (next_input.size() > 0) {
+                window.start_id = this.title;
                 next_input.addClass("input_highlighted");
+            } else {
+                window.end_id = this.title;
+            }
             this_input.removeClass("input_highlighted");
 
         });
+
+        // Temporarily Open camera image if hover over marker
+        google.maps.event.addListener(cameraMarkers[i], 'mouseover', function(event) {
+            cameraMarkers[this.title].info.open(map, cameraMarkers[this.title]);
+
+            if (a)
+                clearInterval(a);
+            window.a = setInterval(
+                function() {
+                    cameraMarkers[this.title].info.setContent(
+                        '<img border="0" align="left" src='+url_base+this.title+'.jpg?v='+new Date().getTime() + '>'
+                    );
+                }.bind(this),5000);
+        });
+
+        // Close camera image when leave marker
+        google.maps.event.addListener(cameraMarkers[i], 'mouseout', function(event) {
+            if (a) clearInterval(a);
+            cameraMarkers[this.title].info.close();
+        });
     }
+
+    
     for (var i in lines) {
         //draw camera to camera lines
         polylines[i] = new google.maps.Polyline({
@@ -332,6 +414,4 @@ window.onload = function() {
     plot_route();
     //start pulling in stats
     stats();
-    //start camera loop
-    newcamera();
 }
