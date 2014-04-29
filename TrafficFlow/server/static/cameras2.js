@@ -433,7 +433,10 @@ var cams = { 'Location Name':
           id: '710',
           lat: '40.61091',
           lon: '-80.09528' },
-        { name: 'Sunny Hill Rd', id: '715' },
+        { name: 'Sunny Hill Rd', 
+          id: '715'
+          lat: 
+          lon: },
         { name: 'Mingo Rd', id: '720' },
         { name: 'Wexford Run Rd', id: '725' },
         { name: 'Warrendale Int', id: '730' },
