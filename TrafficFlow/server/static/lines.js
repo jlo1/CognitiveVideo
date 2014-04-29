@@ -44,4 +44,51 @@ var lines = {
         labellat: 40.411797,
         labellon: -80.102434
     }
+    '595-600': {
+	polyline:"sa_tFpm|gNgaw@fFs]vjU",
+	labellat:40.14122,
+	labellon:-80.220414
+    }
+    
+    '595-600': {
+	polyline:"sa_tFpm|gNgaw@fFs]vjU",
+	labellat:40.14122,
+	labellon:-80.220414
+    }
+   
+    '600-605': {
+	polyline:"yvvuF~e}gNayBr}G",
+	labellat:40.426211,
+	labellon:-80.154496
+    }
+   
+    '605-610': {
+	polyline: "mfyuFdishNohAssT",
+	labellat: 40.433895,
+	labellon: -80.227179
+    }
+    
+    '610-615': {
+	polyline:"}o{uFpt}gNcyA`Dy|Ap{@",
+	labellat:40.450714,
+	labellon:-80.110975
+     }
+   
+    '615-620': {
+	polyline:"{gavFdv_hN}n@fP",
+	labellat:40.48781,
+	labellon:-80.12423
+    }
+    
+    '620-625': {
+	polyline:"ywbvFlg`hNk`@lO",
+	labellat:40.49315,
+	labellon:-80.12686
+    }
+
+    '625-630': {
+	polyline:"eycvFzw`hNm@wI",
+	labellat:40.49338,
+	labellon:-80.12514
+    }
 };
