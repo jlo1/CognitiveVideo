@@ -1,0 +1,24 @@
+html {
+  height: 100%;
+  font-family: verdana;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#map_canvas {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  //top: 300px;
+  opacity: .7;
+}
+
+#asdf {
+  opacity: 1;
+  z-index: 100000;
+  color: red;
+  font-weight: bold;
+}
