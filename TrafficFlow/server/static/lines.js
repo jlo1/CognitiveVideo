@@ -92,6 +92,12 @@ var lines = {
 	labellon: -80.12514
     }
 
+    '690-695': {
+        polyline: "iptvFvz~gNiJaQcCiRqIsd@"
+        labellat: 40.57993,
+        labellon: -80.10784 
+    }
+
     '695-700': {
         polyline: "ipvvFrj{gN~NzApI|LlJhS",
         labellat: 40.58449,
