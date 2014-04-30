@@ -130,7 +130,7 @@ function speed(carcount)
 //calculate the time between two cameras on the current I-79 route
 function time_between(cam1, cam2)
 {
-    if (cameras.indexOf(cam1) < 0 || cameras.indexOf(cam2) < 0)
+    if (cameras[cam1] === undefined || cameras[cam2] === undefined)
         throw new Error ("Camera not in range");
     var time = 0;
     var len = 0;
@@ -153,10 +153,11 @@ function stats()
                 var line = polylines[str];
                 var newColor = calcColor(data[i].count);
                 if (newColor !== line.strokeColor) {
+                    console.log("MADE IT");
                     line.strokeColor = newColor;
                     line.changed();
                 }
-                labels[str].text = speed(data[i].count)+ "mph";
+                labels[str].text = speed(data[i].count)+ "mph (" + data[i].count + " cars)";
                 labels[str].changed('text');
             }
         }
@@ -165,7 +166,6 @@ function stats()
             return;
         }
         document.getElementById("tt").innerText = Math.round(time_between(start_id, end_id)) + " minutes";
-        setTimeout(stats,10000);
     });
 }
 
@@ -215,7 +215,7 @@ window.onload = function() {
     //setup map
     var latlng = new google.maps.LatLng(40.39286439546028,-80.10119845581056);
     var opt = {
-        zoom: 13,
+        zoom: 12,
         center: latlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
@@ -304,4 +304,5 @@ window.onload = function() {
     plot_route();
     //start pulling in stats
     stats();
+    setInterval(function() {stats()}, 5000);
 }

@@ -45,7 +45,7 @@ var lines = {
         labellon: -80.102434
     },
     '595-600': {
-    	polyline: "sa_tFpm|gNgaw@fFs]vjU",
+    	polyline: "gktuFpm|gNiEuCyDwBuBs@eCa@_CCaBFyAJwAb@mDnAmE~CmIhGiDbAsBP{B?oFQ{GKqCN",
     	labellat: 40.14122,
     	labellon: -80.220414
     },
@@ -55,49 +55,44 @@ var lines = {
     	labellon:-80.108260
     },
     '605-610': {
-    	polyline: "gcxuFll}gNukBbGpfB_CwDbAoCz@wFnBmJHcENkGa@qH{@{Ka@yHs@}GYeHPqE`@",
+    	polyline: "gcxuFll}gNiFfC}E|A}EtAwFdAeIBqFg@{F]gUiBgGMeG?mNz@",
     	labellat:40.44267677576393 ,
     	labellon: -80.11108696460724
     },
     '610-612': {
-    	polyline: "ys{uFzu}gNguAjChnA{BeHd@kK\mKj@uJRiHMeFi@gDGsHb@rc@V",
+    	polyline: "}o{uFpt}gNmk@|BoLb@mCc@{JcA}G?}E~@",
     	labellat:40.4597440385463 ,
     	labellon:-80.11184334754944
      },
     '612-620': {
-    	polyline: "aj~uF~w}gNgJlDsRnMwHnFiMnFsVfJa_@rOc^nO"	
+    	polyline: "aj~uF~w}gNgJlDsRnMwHnFiMnFsVfJa_@rOc^nO",
     	labellat:40.475584831989714,
     	labellon:-80.11781126260757
      },
     '620-630': {
-    	polyline: "{wbvF|f`hNoa@jDz\aBgCfAkCfAwBx@{Dj@{Bc@mBQgB_Ae@a@"	
+    	polyline: "ywbvFlg`hNiIhCkHxCcEPcEuA{Ai@",
     	labellat: 40.491483083864495,
     	labellon:-80.1257050037384
     },
     '630-635': {
-        polyline:"gzcvFjl`hNei@gVBEDCBCt@i@lAm@tA]`AUvDTx@PzAf@`B~@|CdCrD`FnA~BlA|Bl@|@NPp@p@DD"
+        polyline:"szcvFbm`hNmCsDgB}DmA_C{AgB{BgCuB_BcEcAuDQiDr@eC`B",
         labellat:40.497663473982335,
         labellon:-80.1205632090568
     },
     '635-640': {
-        polyline:"odevF`u_hNwIxm@?yC?cCBuEH_E^wD`@uC|@}CbAqCnAgB??"
-        labellat:40.50179157584444,
-        labellon:-80.12531071901321
+        polyline:"odevF`u_hNcBjBqAbCi@fBm@lCc@rBMhBOrBE`B?~P",
+        labellat:40.50209,
+        labellon:-80.12624
     },
    '640-645': {
-        polyline:"eoevFzcahNuRfv@xBKjAWxAg@pAwAjAkAlAcCfAmDZgFFiDA}E@eDEwDHcDCsA"
+        polyline:"eoevFzcahNC`]KhDa@rBs@lCgBtCcAlAkAv@iAl@_Bb@mBJ",
         labellat:40.50234530141069,
         labellon:-80.13573780655861
     },
-    '645-650': {
-        polyline:"{bfvFb{bhNot@wQ`r@rQmCi@iEeAuBk@cD}@qCs@qCw@}Cy@yBk@yBq@sCy@y@Qy@W"
+    '645-655': {
+        polyline:"{bfvFb{bhNmACmCi@_IqBaf@uN??eFsAoEmAcFqAgA[{Bo@wD_AoDcAcEeAaFoA",
 	labellat:40.51132154427772,
         labellon:-80.13541728258133
-    },
-    '650-655': {
-        polyline: "yzgvFlfbhNeFsAoEmAcFqAgA[{Bo@wD_AoDcAcEeAaFoA", 
-        labellat: 40.51901,
-        labellon: -80.13153
     },
     '655-660': {
         polyline: "enivFrsahNyCg@_Da@iHYeDU_Ci@cBk@oBgAcCwB",
@@ -131,12 +126,12 @@ var lines = {
     },
     '690-695': {
         polyline: "gntvFby~gNi@c@y@m@m@g@q@s@e@k@i@s@k@_Au@_Bc@qA[mAeBcJgCsN}@uF{@oEuBuL",
-        labellat: 40.58032
+        labellat: 40.58032,
         labellon: -80.11084
     },
     '695-710': {
         polyline: "{juvF`p|gNo@mDgAeEu@wBgA{BkCgD{BkBeHmEaGeDqNwIyKiGuGkDyEcCiEqA{HqAcFUaHLqG`@aObAwWfBoN~@",
-        labellat: 40.59766
+        labellat: 40.59766,
         labellon: -80.08913
     }
 };

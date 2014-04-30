@@ -342,8 +342,8 @@ var cams = { 'Location Name':
           lon: '-80.104731' },
         { name: 'Pittsburgh Int North',
           id: '600',
-          lat: '40.42830',
-          lon: '-80.10589' },
+          lat: '40.42829',
+          lon: '-80.10608' },
         { name: 'W Harbison Rd',
           id: '605',
           lat: '40.43332',
@@ -355,7 +355,7 @@ var cams = { 'Location Name':
         { name: 'Clever Rd',
           id: '612',
           lat: '40.465134',
-          lon: '-80.111776' },
+          lon: '-80.111583' },
         { name: 'Forest Grove Road',  //SB
           id: '615',
           lat: '40.48014',
@@ -438,9 +438,7 @@ var cams = { 'Location Name':
           lat: '40.61091',
           lon: '-80.09473' },
         { name: 'Sunny Hill Rd', 
-          id: '715'
-          lat: 
-          lon: },
+          id: '715'},
         { name: 'Mingo Rd', id: '720' },
         { name: 'Wexford Run Rd', id: '725' },
         { name: 'Warrendale Int', id: '730' },
