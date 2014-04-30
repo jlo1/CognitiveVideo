@@ -50,12 +50,6 @@ var lines = {
 	labellon: -80.220414
     }
     
-    '595-600': {
-	polyline: "sa_tFpm|gNgaw@fFs]vjU",
-	labellat: 40.14122,
-	labellon: -80.220414
-    }
-   
     '600-605': {
 	polyline: "yvvuF~e}gNayBr}G",
 	labellat: 40.426211,
@@ -97,27 +91,62 @@ var lines = {
 	labellon: -80.12514
     }
 
+
+
+
+    '650-655': {
+        polyline:
+        labellat:
+        labellon:
+    },
+    '655-660': {
+        polyline:
+        labellat:
+        labellon:
+    },
+    '660-665': {
+        polyline:
+        labellat:
+        labellon:
+    },
+    '665-670': {
+        polyline:
+        labellat:
+        labellon:
+    },
+    '670-675': {
+        polyline:
+        labellat:
+        labellon:
+    },
+    '675-680': {
+        polyline:
+        labellat:
+        labellon:
+    },
+    '685-690': {
+        polyline:
+        labellat:
+        labellon:
+    },
     '690-695': {
-        polyline: "iptvFvz~gNiJaQcCiRqIsd@"
+        polyline: ""
         labellat: 40.57993,
         labellon: -80.10784 
-    }
-
+    },
     '695-700': {
-        polyline: "ipvvFrj{gN~NzApI|LlJhS",
+        polyline: "",
         labellat: 40.58449,
         labellon: -80.09805
-    }
-
+    },
     '700-705': {
-        polyline: "ipvvFrj{gNsp@ub@xS~MjJlE",
+        polyline: "",
         labellat: 40.59283,
         labellon: -80.09273
-    }
-
+    },
     '705-710': {
-    polyline: "}axvF|fzgNgvApJ",
-    labellat: 40.60769,
-    labellon: -80.08277
+        polyline: "",
+        labellat: 40.60769,
+        labellon: -80.08277
     }
 };
