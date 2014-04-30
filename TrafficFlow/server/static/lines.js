@@ -51,47 +51,45 @@ var lines = {
     }
     
     '600-605': {
-	polyline: "yvvuF~e}gNayBr}G",
-	labellat: 40.426211,
-	labellon: -80.154496
+	polyline: "gcxuFjl}gNfZeTYHOFQHUHQHQJSJSJUJQJSJKFGDIFGFKFEDGDEBGFGDCBCBCBCBCBA@C@OLMLQPQNKJKJKJKHKJGFIFKJIHIFGDEFIFIFEDEFGBGFGFC@GFMJKJKHMJKJOJIHIHIF??KHA@C@CBC@ABC@A?C@ABA@C@A@C@CBC@ABC@A@C@A@C@A@CBC@A@EBC@CBEBC@IFMHMFIFv]gU[HU@YHSH[H",
+	labellat:40.4316191 ,
+	labellon:-80.108260
     }
    
     '605-610': {
-	polyline: "mfyuFdishNohAssT",
-	labellat: 40.433895,
-	labellon: -80.227179
+	polyline: "gcxuFll}gNukBbGpfB_CwDbAoCz@wFnBmJHcENkGa@qH{@{Ka@yHs@}GYeHPqE`@",
+	labellat:40.44267677576393 ,
+	labellon: -80.11108696460724
     }
     
     '610-612': {
-	polyline: "}o{uFpt}gNcyA`D",
-	labellat: 40.450714,
-	labellon: -80.110975
+	polyline: "ys{uFzu}gNguAjChnA{BeHd@kK\mKj@uJRiHMeFi@gDGsHb@rc@V",
+	labellat:40.4597440385463 ,
+	labellon:-80.11184334754944
      }
     '612-615': {
-	polyline: "{gavFdv_hN}n@fP",
-	labellat: 40.48781,
-	labellon: -80.12423
+	polyline: "kj~uFrx}gNmlClmAfjCslAu@Tm@Ri@T_@Rc@Tm@^aAh@y@l@c@T]Rm@^w@j@g@Vq@^g@b@u@f@s@^o@d@s@`@s@d@eAp@oBnAgAj@eAf@}Ar@cA\{An@}OvGsh@bTyNlGcFdC}ElB|gA}d@"	
+	labellat:40.475584831989714 ,
+	labellon:-80.11781126260757
      }
    
     '615-620': {
-	polyline: "{gavFdv_hN}n@fP",
-	labellat: 40.48781,
-	labellon: -80.12423
+	polyline: "",
+	labellat: ,
+	labellon:
     }
     
     '620-625': {
-	polyline: "ywbvFlg`hNk`@lO",
-	labellat: 40.49315,
-	labellon: -80.12686
+	polyline: "",
+	labellat: ,
+	labellon: 
     }
 
     '625-630': {
-	polyline: "eycvFzw`hNm@wI",
-	labellat: 40.49338,
-	labellon: -80.12514
+	polyline: "",
+	labellat: ,
+	labellon: 
     }
-
-
 
 
     '650-655': {
