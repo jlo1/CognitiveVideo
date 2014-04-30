@@ -130,15 +130,12 @@ function speed(carcount)
 //calculate the time between two cameras on the current I-79 route
 function time_between(cam1, cam2)
 {
-    if (cam1 < 550 || cam2 < 550) throw new Error("Camera too low")
-    if (cam1 > 595 || cam2 > 595) throw new Error("Camera too high")
-    var mod1 = cam1%5;
-    var mod2 = cam2%5;
-    if (mod1 != 0 || mod2 != 0) throw new Error("Camera not a multiple of 5")
+    if (cameras.indexOf(cam1) < 0 || cameras.indexOf(cam2) < 0)
+        throw new Error ("Camera not in range");
     var time = 0;
     var len = 0;
-    for (var i = parseInt(cam1); i < parseInt(cam2); i+=5) {
-        var curr_line = google.maps.geometry.encoding.decodePath(lines[i+ "-" + (i+5)].polyline);
+    for (var i = parseInt(cam1); i < parseInt(cam2); i = cameras[i].next) {
+        var curr_line = google.maps.geometry.encoding.decodePath(lines[i+ "-" + cameras[i].next].polyline);
         var line_len = google.maps.geometry.spherical.computeLength(curr_line)
         len += line_len
         time += line_len/(speed(window.currentstats[cam1].count) * MPH_TO_METERSMIN);
@@ -151,7 +148,7 @@ function stats()
     $.getJSON('/endpoint?callback=?', function(data) {
         window.currentstats = data;
         for (var i in data) {
-            if (i !== '595' && i.indexOf('-') < 0) {
+            if (i !== '710' && i.indexOf('-') < 0) {
                 var str = i+'-'+cameras[i].next;
                 var line = polylines[str];
                 var newColor = calcColor(data[i].count);

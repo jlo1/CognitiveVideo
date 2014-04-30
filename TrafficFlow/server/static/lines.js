@@ -43,67 +43,58 @@ var lines = {
         polyline: "y_suFd~|gNaIt@wA?yAIeBWyAc@gBq@wBoAuCsByD}CiCoB",
         labellat: 40.411797,
         labellon: -80.102434
-    }
+    },
     '595-600': {
-	polyline: "sa_tFpm|gNgaw@fFs]vjU",
-	labellat: 40.14122,
-	labellon: -80.220414
-    }
-    
+    	polyline: "sa_tFpm|gNgaw@fFs]vjU",
+    	labellat: 40.14122,
+    	labellon: -80.220414
+    },
     '600-605': {
-	polyline: "{cwuFxt|gN{Cv@{C|AoCnBiDjDiEhDoDvC",
-	labellat:40.4316191 ,
-	labellon:-80.108260
-    }
-   
+    	polyline: "{cwuFxt|gN{Cv@{C|AoCnBiDjDiEhDoDvC",
+    	labellat:40.4316191 ,
+    	labellon:-80.108260
+    },   
     '605-610': {
-	polyline: "gcxuFll}gNukBbGpfB_CwDbAoCz@wFnBmJHcENkGa@qH{@{Ka@yHs@}GYeHPqE`@",
-	labellat:40.44267677576393 ,
-	labellon: -80.11108696460724
-    }
+    	polyline: "gcxuFll}gNukBbGpfB_CwDbAoCz@wFnBmJHcENkGa@qH{@{Ka@yHs@}GYeHPqE`@",
+    	labellat:40.44267677576393 ,
+    	labellon: -80.11108696460724
+    },
     
     '610-612': {
-	polyline: "ys{uFzu}gNguAjChnA{BeHd@kK\mKj@uJRiHMeFi@gDGsHb@rc@V",
-	labellat:40.4597440385463 ,
-	labellon:-80.11184334754944
-     }
+    	polyline: "ys{uFzu}gNguAjChnA{BeHd@kK\mKj@uJRiHMeFi@gDGsHb@rc@V",
+    	labellat:40.4597440385463 ,
+    	labellon:-80.11184334754944
+     },
     '612-620': {
-	polyline: "aj~uF~w}gNgJlDsRnMwHnFiMnFsVfJa_@rOc^nO"	
-	labellat:40.475584831989714 ,
-	labellon:-80.11781126260757
-     }
-    
+    	polyline: "aj~uF~w}gNgJlDsRnMwHnFiMnFsVfJa_@rOc^nO"	
+    	labellat:40.475584831989714 ,
+    	labellon:-80.11781126260757
+     },    
     '620-630': {
-	polyline: "{wbvF|f`hNsChAgCfAkCfAwBx@{Dj@{Bc@mBQuBm@[U"	
-	labellat:40.491483083864495 ,
-	labellon:-80.1257050037384
-    }
-
-   
+    	polyline: "{wbvF|f`hNsChAgCfAkCfAwBx@{Dj@{Bc@mBQuBm@[U"	
+    	labellat:40.491483083864495 ,
+    	labellon:-80.1257050037384
+    },   
     '630-635': {
         polyline:""
         labellat:
         labellon:
     },
-
     '635-640': {
         polyline:""
         labellat:
         labellon:
     },
-
    '640-645': {
         polyline:""
         labellat:
         labellon:
     },
-
     '645-650': {
         polyline:""
         labellat:
         labellon:
     },
-
     '650-655': {
         polyline: "yzgvFlfbhNeFsAoEmAcFqAgA[{Bo@wD_AoDcAcEeAaFoA", 
         labellat: 40.51901,
