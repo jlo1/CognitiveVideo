@@ -68,10 +68,15 @@ var lines = {
 	labellon: -80.227179
     }
     
-    '610-615': {
-	polyline: "}o{uFpt}gNcyA`Dy|Ap{@",
+    '610-612': {
+	polyline: "}o{uFpt}gNcyA`D",
 	labellat: 40.450714,
 	labellon: -80.110975
+     }
+    '612-615': {
+	polyline: "{gavFdv_hN}n@fP",
+	labellat: 40.48781,
+	labellon: -80.12423
      }
    
     '615-620': {
