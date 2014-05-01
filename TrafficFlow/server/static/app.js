@@ -146,6 +146,7 @@ function time_between(cam1, cam2)
 function stats()
 {
     $.getJSON('/endpoint?callback=?', function(data) {
+        var start_stats_time = time();
         window.currentstats = data;
         for (var i in data) {
             if (i !== '710' && i.indexOf('-') < 0) {
@@ -161,11 +162,21 @@ function stats()
                 labels[str].changed('text');
             }
         }
-        //document.getElementById("tt").innerText = Math.round(travel_time()) + " minutes";
+
+        // Check runtime vs num cameras
+        if(start_program_time !== null) {
+            var end_time = time();
+            console.log('Num Cameras: ' + cameras.size());
+            console.log('Program start time: ' + (end_time - start_program_time) + 'ms');
+            console.log('Stats runtime: ' + (end_time - start_stats_time) + 'ms');
+            start_program_time = null;
+        }
+
         if (start_id == null || end_id == null) {
             return;
         }
         document.getElementById("tt").innerText = Math.round(time_between(start_id, end_id)) + " minutes";
+
     });
 }
 
@@ -212,6 +223,8 @@ function get_camera_name(id) {
 }
 
 window.onload = function() {
+    window.start_program_time = time();
+
     //setup map
     var latlng = new google.maps.LatLng(40.39286439546028,-80.10119845581056);
     var opt = {
