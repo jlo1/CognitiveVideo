@@ -46,8 +46,8 @@ var lines = {
     },
     '595-600': {
     	polyline: "gktuFpm|gNiEuCyDwBuBs@eCa@_CCaBFyAJwAb@mDnAmE~CmIhGiDbAsBP{B?oFQ{GKqCN",
-    	labellat: 40.14122,
-    	labellon: -80.220414
+    	labellat: 40.41866,
+    	labellon: -80.10123
     },
     '600-605': {
     	polyline: "{cwuFxt|gN{Cv@{C|AoCnBiDjDiEhDoDvC",

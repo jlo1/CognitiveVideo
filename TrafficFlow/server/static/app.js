@@ -10,7 +10,9 @@ window.NUM_LANES = 4;
 window.a = setTimeout(undefined, 1000000000000000000000);
 window.start_id = null;
 window.end_id = null;
+window.numcameras = 28;
 
+window.showDetails = true;
 var currentcamera = 595;
 var url_base = 'http://www.dot35.state.pa.us/public/Districts/District11/WebCams/D11-';
 //plot the current (preprogrammed) route
@@ -114,10 +116,14 @@ function newcamera(id)
 //calculate the road line color for a given car count
 function calcColor(carcount)
 {
-    //if (carcount > 30)
-    if (carcount > 5)
+    /* For demo purposes, commenting out:
+    if (carcount > 15)
         return '#FF0000';
-    if (carcount > 10 && carcount <= 20)
+    if (carcount > 5 && carcount <= 15)
+        */
+    if (carcount > 15)
+        return '#FF0000';
+    if (carcount > 10 && carcount <= 15)
         return '#FFFF00';
     else
         return '#00FF00';
@@ -125,9 +131,13 @@ function calcColor(carcount)
 //calculate the speed given the car count
 function speed(carcount)
 {
-    //if (carcount <=20)return 65;
-    if (carcount <= 5) return 65;
+    /*
+    if (carcount <= 20) return 65;
     return ((10*NUM_LANES - carcount) * 3);
+    */
+    if (carcount <= 10) return 65;
+    var speed = ((6*NUM_LANES - carcount) * 4);
+    return speed >= 5 ? speed : 5;
 }
 //calculate the time between two cameras on the current I-79 route
 function time_between(cam1, cam2)
@@ -148,31 +158,36 @@ function time_between(cam1, cam2)
 function stats()
 {
     $.getJSON('/endpoint?callback=?', function(data) {
-        var start_stats_time = time();
+        var start_stats_time = new Date().getTime();
         window.currentstats = data;
         for (var i in data) {
-            if (i !== '710' && i.indexOf('-') < 0) {
+            if (cameras[i] === undefined) continue;
+            if (cameras[i].last === undefined && i.indexOf('-') < 0) {
                 var str = i+'-'+cameras[i].next;
                 var line = polylines[str];
                 var newColor = calcColor(data[i].count);
                 if (newColor !== line.strokeColor) {
-                    console.log("MADE IT");
-                    line.strokeColor = newColor;
-                    line.changed();
+                    /*line.strokeColor = newColor;
+                    line.changed();*/
+                    line.setOptions({strokeColor: newColor});
                 }
-                labels[str].text = speed(data[i].count)+ "mph (" + data[i].count + " cars)";
+                labels[str].text = showDetails
+                    ? speed(data[i].count)+ "mph (" + data[i].count + " cars)"
+                    : "";
                 labels[str].changed('text');
             }
         }
 
+        /************/
         // Check runtime vs num cameras
         if(start_program_time !== null) {
-            var end_time = time();
-            console.log('Num Cameras: ' + cameras.size());
+            var end_time = new Date().getTime();
+            console.log('Num Cameras: ' + Object.size(cameras));
             console.log('Program start time: ' + (end_time - start_program_time) + 'ms');
             console.log('Stats runtime: ' + (end_time - start_stats_time) + 'ms');
             start_program_time = null;
         }
+        /************/
 
         if (start_id == null || end_id == null) {
             return;
@@ -181,6 +196,13 @@ function stats()
 
     });
 }
+Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
 
 function handle_events()
 {
@@ -214,6 +236,13 @@ function handle_events()
         stats();
     });
 
+    $("#showDetails").click(function() {
+        if ($("input:checked").length > 0) 
+            window.showDetails = true;
+        else
+            window.showDetails = false;
+    })
+
 }
 
 function get_camera_name(id) {
@@ -225,7 +254,33 @@ function get_camera_name(id) {
 }
 
 window.onload = function() {
-    window.start_program_time = time();
+    /*************/
+    // For testing and limiting number of cars to load
+    var tmp = {};
+    var count = 0;
+    for (var i in cameras) {
+        tmp[i] = cameras[i];
+        count++;
+        if (count === numcameras) {
+            tmp[i].last = true;
+            break;
+        }
+    }
+    window.cameras = tmp;
+    console.log(Object.size(cameras));
+
+    tmp = {};
+    count = 0;
+    for (var i in lines) {
+        tmp[i] = lines[i];
+        count++;
+        if (count === numcameras - 1) break;
+    }
+    window.lines = tmp;
+    console.log(Object.size(lines));
+    /************/
+
+    window.start_program_time = new Date().getTime();
 
     //setup map
     var latlng = new google.maps.LatLng(40.39286439546028,-80.10119845581056);
@@ -286,7 +341,6 @@ window.onload = function() {
         });
     }
 
-    
     for (var i in lines) {
         //draw camera to camera lines
         polylines[i] = new google.maps.Polyline({

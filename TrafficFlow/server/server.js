@@ -7,19 +7,22 @@ var path = require('path');
 var stats = {};
 var web;
 
+
 function start() {
     web = cp.spawn(path.join('bin','web'),[]);
     web.stdout.on('data', function(data) {
         //data is a buffer of {id},{car count}\r\n
         //separated by -\r\n
         var str = data.toString();
+        var time = new Date().getTime();
         if (str === "-\r\n") {
             return;
         }
         var s = str.split(',');
         if (!stats[s[0]]) stats[s[0]] = {};
         stats[s[0]].count = parseInt(s[1],10);
-        stats[s[0]].lastupdated = new Date().getTime();
+        stats[s[0]].lastupdated = time;
+        fs.appendFileSync('log.txt', time + ',' + str);
     });
     web.on('exit', function(code) {
         start();

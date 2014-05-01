@@ -166,6 +166,7 @@ var cameras = {
         id: '710',
         lat: 40.61091,
         lng: -80.09473,
-        next: '550'
+        next: '550',
+        last: true
     }, 
 }

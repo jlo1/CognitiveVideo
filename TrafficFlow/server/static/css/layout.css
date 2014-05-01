@@ -71,7 +71,7 @@ body {
   //top: 300px;
 }
 
-#input_block input {
+#input_block input[type="text"] {
   box-sizing: border-box;
   display: block;
   padding: 4px;
