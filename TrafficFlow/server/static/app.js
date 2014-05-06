@@ -116,14 +116,9 @@ function newcamera(id)
 //calculate the road line color for a given car count
 function calcColor(carcount)
 {
-    /* For demo purposes, commenting out:
-    if (carcount > 15)
+    if (carcount > 30)
         return '#FF0000';
-    if (carcount > 5 && carcount <= 15)
-        */
-    if (carcount > 15)
-        return '#FF0000';
-    if (carcount > 10 && carcount <= 15)
+    if (carcount > 20 && carcount <= 30)
         return '#FFFF00';
     else
         return '#00FF00';
@@ -131,12 +126,8 @@ function calcColor(carcount)
 //calculate the speed given the car count
 function speed(carcount)
 {
-    /*
     if (carcount <= 20) return 65;
-    return ((10*NUM_LANES - carcount) * 3);
-    */
-    if (carcount <= 10) return 65;
-    var speed = ((6*NUM_LANES - carcount) * 4);
+    var speed = ((10*NUM_LANES - carcount) * 3);
     return speed >= 5 ? speed : 5;
 }
 //calculate the time between two cameras on the current I-79 route
